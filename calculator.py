@@ -52,7 +52,7 @@ def main():
         to make it better just deal with it."
     )
     parser.add_argument(
-        "--goal", dest="goal", type=str, default="16.5",
+        "--goal", dest="goal", type=float, default=16.5,
         help="Your goal for your overall mark, either a classification"
     )
     parser.add_argument(
