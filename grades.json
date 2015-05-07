@@ -1,0 +1,67 @@
+{
+    "completed": {
+        "JH": {
+            "credit": 30,
+            "grade": 18.0
+        },
+        "CC": {
+            "credit": 15,
+            "grade": 16.3
+        },
+        "CT": {
+            "credit": 15,
+            "grade": 17.2
+        },
+        "AI": {
+            "credit": 15,
+            "grade": 17.6
+        },
+        "SE": {
+            "credit": 15,
+            "grade": 18.0
+        },
+        "OS": {
+            "credit": 15,
+            "grade": 14.2
+        },
+        "DE": {
+            "credit": 15,
+            "grade": 17.7
+        },
+        "VG": {
+            "credit": 15,
+            "grade": 17.1
+        },
+        "LSV": {
+            "credit": 15,
+            "grade": 16.3
+        },
+        "AIP": {
+            "credit": 15,
+            "grade": 17.2
+        },
+        "SH": {
+            "credit": 30,
+            "grade": 17.0
+        }
+
+    },
+
+    "left": {
+        "DM": {
+            "credit": 15,
+            "grade": 18.5,
+            "weight": 0.4
+        },
+        "DS": {
+            "credit": 15,
+            "grade": 15.2,
+            "weight": 0.4
+        },
+        "CP": {
+            "credit": 15,
+            "grade": 16.8,
+            "weight": 0.4
+        }
+    }
+}
