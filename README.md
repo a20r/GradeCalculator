@@ -5,7 +5,7 @@ Calculating your remaining grades so you don't have to
     python calculator.py --grades=[your grades.json file] --goal=[your goal grade overall]
 
 # Help
-    $ python --help
+    $ python calculator.py --help
     usage: calculator.py [-h] [--goal GOAL] [--grades GRADES]
 
     Calculates the grades you need, if the results are negative or over 20, you
