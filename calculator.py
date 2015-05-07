@@ -21,7 +21,7 @@ def calculate_completed_average(grades):
     credit_sum = sum_credits(grades, "completed")
     avg = 0.0
     for _, grade in completed.iteritems():
-        avg += grade["grade"] * grade["credit"] / credit_sum
+        avg += float(grade["grade"]) * grade["credit"] / credit_sum
     return avg
 
 
@@ -38,7 +38,7 @@ def calculate_needed_grades(grades, goal):
     left = grades["left"]
     exam_grades = dict()
     for name, grade in left.iteritems():
-        gr = grade["grade"]
+        gr = float(grade["grade"])
         w = grade["weight"]
         eg = (na - gr * w) / (1 - w)
         exam_grades[name] = eg
