@@ -45,13 +45,31 @@ def calculate_needed_grades(grades, goal):
     return exam_grades
 
 
+def get_goal(goal_str):
+    goal_str = goal_str.lower()
+    if goal_str == "first" or goal_str == "1":
+        goal = 16.5
+    elif goal_str == "2.1":
+        goal = 13.5
+    elif goal_str == "2.2":
+        goal = 10.5
+    else:
+        goal = float(goal_str)
+    return goal
+
+
 def main():
     parser = argparse.ArgumentParser(
-        description="Calculates the grades you need"
+        description="Calculates the grades you need, if the results \
+        are negative or over 20, you cant get those grades. Too lazy \
+        to make it better just deal with it. Also I don't support \
+        classifications under 2.2, so you will just have to enter \
+        the goal yourself."
     )
     parser.add_argument(
-        "--goal", dest="goal", type=float, default=16.5,
-        help="Your goal for your overall mark"
+        "--goal", dest="goal", type=str, default="16.5",
+        help="Your goal for your overall mark, either a classification \
+        or a actual average. Acceptable formats: 17, 2.1, First, etc"
     )
     parser.add_argument(
         "--grades", dest="grades", type=str, default="grades.json",
@@ -59,7 +77,8 @@ def main():
     )
     args = parser.parse_args()
     grades = load_grades_file(args.grades)
-    egs = calculate_needed_grades(grades, args.goal)
+    goal = get_goal(args.goal)
+    egs = calculate_needed_grades(grades, goal)
     for name, eg in egs.iteritems():
         print name, ":", eg
 
