@@ -53,7 +53,7 @@ def main():
     )
     parser.add_argument(
         "--goal", dest="goal", type=float, default=16.5,
-        help="Your goal for your overall mark, either a classification"
+        help="Your goal for your overall mark."
     )
     parser.add_argument(
         "--grades", dest="grades", type=str, default="grades.json",
