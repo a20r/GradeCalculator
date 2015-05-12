@@ -1,5 +1,6 @@
 import json
 import argparse
+import numpy as np
 
 
 def load_grades_file(filename):
@@ -44,6 +45,21 @@ def calculate_needed_grades(grades, goal):
     return exam_grades
 
 
+def calculate_median(grades, needed):
+    results = list()
+    for _, grade in grades["completed"].iteritems():
+        if grade["credit"] == 15:
+            results.append(grade["grade"])
+        if grade["credit"] == 30:
+            results.append(grade["grade"])
+            results.append(grade["grade"])
+
+    for _, grade in needed.iteritems():
+        results.append(grade)
+
+    return np.median(results)
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="Calculates the grades you need, if the results \
@@ -61,6 +77,7 @@ def main():
     args = parser.parse_args()
     grades = load_grades_file(args.grades)
     egs = calculate_needed_grades(grades, args.goal)
+    print "Median :", calculate_median(grades, egs)
     for name, eg in egs.iteritems():
         print name, ":", eg
 
