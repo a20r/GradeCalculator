@@ -1,6 +1,6 @@
 import json
 import argparse
-# import numpy as np
+import numpy as np
 
 
 def load_grades_file(filename):
@@ -45,15 +45,7 @@ def calculate_needed_grades(grades, goal):
     return exam_grades
 
 
-def median(nums):
-    nums = sorted(nums)
-    if len(nums) % 2 == 1:
-        return nums[(len(nums) - 1) / 2]
-    else:
-        return 0.5 * nums[len(nums) / 2] + 0.5 * nums[len(nums) / 2 - 1]
-
-
-def calculate_median(grades, needed):
+def get_overall_grades(grades, needed):
     results = list()
     for _, grade in grades["completed"].iteritems():
         if grade["credit"] == 15:
@@ -62,10 +54,12 @@ def calculate_median(grades, needed):
             results.append(grade["grade"])
             results.append(grade["grade"])
 
-    for _, grade in needed.iteritems():
-        results.append(grade)
+    for name, grade in needed.iteritems():
+        left_gr = grades["left"][name]["grade"]
+        left_w = grades["left"][name]["weight"]
+        results.append(left_gr * left_w + (1 - left_w) * grade)
 
-    return median(results)
+    return results
 
 
 def main():
@@ -85,7 +79,9 @@ def main():
     args = parser.parse_args()
     grades = load_grades_file(args.grades)
     egs = calculate_needed_grades(grades, args.goal)
-    print "Median :", calculate_median(grades, egs)
+    o_grades = get_overall_grades(grades, egs)
+    print "Median :", np.median(o_grades)
+    print "Mean : ", np.mean(o_grades)
     for name, eg in egs.iteritems():
         print name, ":", eg
 
