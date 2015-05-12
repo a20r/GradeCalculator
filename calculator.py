@@ -1,6 +1,6 @@
 import json
 import argparse
-import numpy as np
+# import numpy as np
 
 
 def load_grades_file(filename):
@@ -45,6 +45,14 @@ def calculate_needed_grades(grades, goal):
     return exam_grades
 
 
+def median(nums):
+    nums = sorted(nums)
+    if len(nums) % 2 == 1:
+        return nums[(len(nums) - 1) / 2]
+    else:
+        return 0.5 * nums[len(nums) / 2] + 0.5 * nums[len(nums) / 2 - 1]
+
+
 def calculate_median(grades, needed):
     results = list()
     for _, grade in grades["completed"].iteritems():
@@ -57,7 +65,7 @@ def calculate_median(grades, needed):
     for _, grade in needed.iteritems():
         results.append(grade)
 
-    return np.median(results)
+    return median(results)
 
 
 def main():
